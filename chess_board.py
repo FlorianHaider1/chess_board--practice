@@ -72,41 +72,42 @@ def move():
     print("\nYou selected\t",chessboard_actual[start])
     print("\nSelect target field\n")
     target = turn()
-    move_legality(chessboard_actual[start], start, target)
+    delta = target - start
+    move_legality(chessboard_actual[start], delta)
     print("You moved ", chessboard_actual[start])
     chessboard_actual[target] = chessboard_actual[start]
     display()
 
-def move_legality(piece, start, target):
+def move_legality(piece, delta):
     if piece == "\u2656" or piece == "\u265C":
-        rook_move(start, target)
+        rook_move(delta)
     if piece == "\u2658" or piece == "\u265E":
-        knight_move(start, target)
+        knight_move(delta)
     if piece == "\u2657" or piece == "\u265D":
-        bishop_move(start, target)
+        bishop_move(delta)
     if piece == "\u2655" or piece == "\u265B":
-        queen_move(start, target)
+        queen_move(delta)
     if piece == "\u2654" or piece == "\u265A":
-        king_move(start, target)
+        king_move(delta)
     if piece == "\u2659" or piece == "\u265F":
-        pawn_move(start, target)
+        pawn_move(delta)
 
-def rook_move():
+def rook_move(delta):
     
 
-def knight_move():
+def knight_move(start):
     ...
 
-def king_move():
+def king_move(start):
     ...
 
-def queen_move():
+def queen_move(start):
     ...
 
-def pawn_move():
+def pawn_move(start):
     ...
 
-def bishop_move():
+def bishop_move(start):
     ...
 
 def collision_detection():
