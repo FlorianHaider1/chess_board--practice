@@ -3,19 +3,17 @@
 # II) Possibility to use two list as rows and colums.
 #
 # Chessboard is 8x8 => abcdefgh X 12345678
-# white_king = '\u2654'
-# white_queen = '\u2655'
-# white_rook = '\u2656'
-# white_bishop = '\u2657'
-# white_knight = '\u2658'
-# white_pawn = '\u2659'
-# black_king = '\u265A'
-# black_queen = '\u265B'
-# black_rook = '\u265C'
-# black_bishop = '\u265D'
-# black_knight = '\u265E'
-# black_pawn = '\u265F'
+# white_king = '\u2654'     white_queen = '\u2655'    white_rook = '\u2656'
+# white_bishop = '\u2657'   white_knight = '\u2658'   white_pawn = '\u2659'
+# black_king = '\u265A'     black_queen = '\u265B'    black_rook = '\u265C'
+# black_bishop = '\u265D'   black_knight = '\u265E'   black_pawn = '\u265F'
 # Chessboard starts from A1 to H8, so lower left corner to upper right corner
+# bishop can move freely diagonal. collision detection. does capture.
+# queen can move freely diagonal and straigth. collision detection. does capture.
+# king can move 1 field in every directon. collision detection. does capture.
+# pawn can move 1 field up. collision detection, but does not capture. capture diagonal
+# rook can move freely straigth. collision detection. does capture.
+# knight special move, threatens 8 fields. no collision detection. captures only on those 8 fields.
 
 from prettytable import PrettyTable
 
@@ -77,6 +75,13 @@ def move():
     print("You moved ", chessboard_actual[start])
     chessboard_actual[target] = chessboard_actual[start]
     display()
+
+def move_legality():
+    ...
+
+def collision_detection():
+    ...
+
 
 
 move()
