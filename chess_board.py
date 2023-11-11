@@ -9,7 +9,7 @@
 # black_bishop = '\u265D'   black_knight = '\u265E'   black_pawn = '\u265F'
 # Chessboard starts from A1 to H8, so lower left corner to upper right corner
 # bishop can move freely diagonal. collision detection. does capture.
-# queen can move freely diagonal and straigth. collision detection. does capture.
+# queen can move freely diagonal and straigth. collision detection. does capture.wwwwww
 # king can move 1 field in every directon. collision detection. does capture.
 # pawn can move 1 field up. collision detection, but does not capture. capture diagonal
 # rook can move freely straigth. collision detection. does capture.
@@ -58,7 +58,7 @@ def display():
     board.add_row(["E"] + chessboard_actual[32:40:])
     board.add_row(["F"] + chessboard_actual[40:48:])
     board.add_row(["G"] + chessboard_actual[48:56:])
-    board.add_row(["G"] + chessboard_actual[56:65:])
+    board.add_row(["H"] + chessboard_actual[56:65:])
     print(board)
 
 def turn():
@@ -67,33 +67,38 @@ def turn():
     return convert_coordinate_index(letter, number)
 
 def move():
+    display()
     print("\nSelect figure field\n")
     start = turn()
     print("\nYou selected\t",chessboard_actual[start])
     print("\nSelect target field\n")
     target = turn()
     delta = target - start
-    move_legality(chessboard_actual[start], delta)
-    print("You moved ", chessboard_actual[start])
-    chessboard_actual[target] = chessboard_actual[start]
+    print(move_legality(chessboard_actual[start], delta))
+    if move_legality(chessboard_actual[start], delta):
+        print ("You moved ", chessboard_actual[start])
+        chessboard_actual[target] = chessboard_actual[start]
+    else:
+        print("Move not valid. Please try again.")
+        move()
     display()
 
 def move_legality(piece, delta):
     if piece == "\u2656" or piece == "\u265C":
-        rook_move(delta)
+        return rook_move(delta)
     if piece == "\u2658" or piece == "\u265E":
-        knight_move(delta)
+        return knight_move(delta)
     if piece == "\u2657" or piece == "\u265D":
-        bishop_move(delta)
+        return bishop_move(delta)
     if piece == "\u2655" or piece == "\u265B":
-        queen_move(delta)
+        return queen_move(delta)
     if piece == "\u2654" or piece == "\u265A":
-        king_move(delta)
+        return king_move(delta)
     if piece == "\u2659" or piece == "\u265F":
-        pawn_move(delta)
+        return pawn_move(delta)
 
 def rook_move(delta):
-    
+    return delta %8 == 0
 
 def knight_move(start):
     ...
