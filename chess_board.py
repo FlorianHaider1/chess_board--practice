@@ -70,16 +70,23 @@ def move():
     display()
     print("\nSelect figure field\n")
     start = turn()
-    print("\nYou selected\t",chessboard_actual[start])
+    piece_start = chessboard_actual[start]
+    print("\nYou selected\t",piece_start)
     print("\nSelect target field\n")
     target = turn()
-    if move_legality(chessboard_actual[start], start, target):
-        print ("You moved ", chessboard_actual[start])
-        chessboard_actual[target] = chessboard_actual[start]
+    piece_target = chessboard_actual[target]
+    if move_legality(piece_start, start, target):
+        if piece_start is black and piece_target is black or piece_start is white and piece_target is white:
+            print("Move not valid. Please try again.")
+        else:
+            # collision_detection(piece, start, target)
+            print ("You moved ", piece_start)
+            chessboard_actual[target] = piece_start
+            chessboard_actual[start] = ""
     else:
         print("Move not valid. Please try again.")
         move()
-    display()
+    move()
 
 def move_legality(piece, start, target):
     if piece == "\u2656" or piece == "\u265C":
@@ -97,52 +104,70 @@ def move_legality(piece, start, target):
 
 def rook_move(start, target):
     delta = abs(target - start)
-    if target > 64 or target < 1:
-        return False
-    elif delta %8 == 0:
+    if delta %8 == 0:
         return True
     elif delta >= 1 - ((start//8)+1) and delta <= 8 - ((start//8)+1):
         return True 
 
 def knight_move(start, target):
     delta = abs(target - start)
-    if target > 64 or target < 1:
-        return False
-    ...
+    if delta in (6, 10, 15, 17):
+        return True
 
 def king_move(start, target):
     delta = abs(target - start)
-    if target > 64 or target < 1:
-        return False
     if delta in (1, 8, 7, 9):
         return True
 
 def queen_move(start, target):
     delta = abs(target - start)
-    if target > 64 or target < 1:
-        return False
     if delta %8 == 0:
         return True
     elif delta >= 1 - ((start//8)+1) and delta <= 8 - ((start//8)+1):
         return True 
 
 def pawn_move(start, target):
-    if target > 64 or target < 1:
-        return False
     delta = abs(target - start)
     if delta == 8:
         return True
+    elif delta in (7,9) and (start in white and target in black or start in black and target in white):
+        return True
 
 def bishop_move(start, target):
-    if target > 64 or target < 1:
-        return False
     delta = abs(target - start)
     if delta % 7 == 0 or delta % 9 == 0:
         return True 
 
-def collision_detection():
-    ...
+def collision_detection(piece, start, target):
+    if piece == "\u2656" or piece == "\u265C":
+        return rook_collision(start, target)
+    if piece == "\u2658" or piece == "\u265E":
+        return knight_collision(start, target)
+    if piece == "\u2657" or piece == "\u265D":
+        return bishop_collision(start, target)
+    if piece == "\u2655" or piece == "\u265B":
+        return queen_collision(start, target)
+    if piece == "\u2654" or piece == "\u265A":
+        return king_collision(start, target)
+    if piece == "\u2659" or piece == "\u265F":
+        return pawn_collision(start, target)
 
 
+# def rook_collision(start, target):
+#     ...
+        
+# def knight_collision(start, target):
+#         ...
+# def king_collision(start, target):
+#         ...
+# def queen_collision(start, target):
+#         ...
+# def bishop_collision(start, target):
+#         ...
+# def pawn_collision(start, target):
+#         ...
+
+white = "\u265F","\u265C","\u265E","\u265D","\u265B","\u265A"
+black = "\u2656","\u2658","\u2657","\u2655","\u2654","\u2659"
 
 move()
