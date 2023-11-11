@@ -73,9 +73,7 @@ def move():
     print("\nYou selected\t",chessboard_actual[start])
     print("\nSelect target field\n")
     target = turn()
-    delta = target - start
-    print(move_legality(chessboard_actual[start], delta))
-    if move_legality(chessboard_actual[start], delta):
+    if move_legality(chessboard_actual[start], start, target):
         print ("You moved ", chessboard_actual[start])
         chessboard_actual[target] = chessboard_actual[start]
     else:
@@ -83,37 +81,63 @@ def move():
         move()
     display()
 
-def move_legality(piece, delta):
+def move_legality(piece, start, target):
     if piece == "\u2656" or piece == "\u265C":
-        return rook_move(delta)
+        return rook_move(start, target)
     if piece == "\u2658" or piece == "\u265E":
-        return knight_move(delta)
+        return knight_move(start, target)
     if piece == "\u2657" or piece == "\u265D":
-        return bishop_move(delta)
+        return bishop_move(start, target)
     if piece == "\u2655" or piece == "\u265B":
-        return queen_move(delta)
+        return queen_move(start, target)
     if piece == "\u2654" or piece == "\u265A":
-        return king_move(delta)
+        return king_move(start, target)
     if piece == "\u2659" or piece == "\u265F":
-        return pawn_move(delta)
+        return pawn_move(start, target)
 
-def rook_move(delta):
-    return delta %8 == 0
+def rook_move(start, target):
+    delta = abs(target - start)
+    delta_relativ = (target - start) % 8
+    if target > 64 or target < 1:
+        return False
+    elif delta %8 == 0:
+        return True
+    elif delta_relativ >= 1 - delta_relativ and delta_relativ <= 8 - delta_relativ:
+        return True 
 
-def knight_move(start):
+def knight_move(start, target):
+    delta = abs(target - start)
+    if target > 64 or target < 1:
+        return False
     ...
 
-def king_move(start):
-    ...
+def king_move(start, target):
+    delta = abs(target - start)
+    if target > 64 or target < 1:
+        return False
+    if delta in (1, 8, 7, 9):
+        return True
 
-def queen_move(start):
-    ...
+def queen_move(start, target):
+    delta = abs(target - start)
+    if target > 64 or target < 1:
+        return False
+    if delta %8 == 0:
+        return True
 
-def pawn_move(start):
-    ...
+def pawn_move(start, target):
+    if target > 64 or target < 1:
+        return False
+    delta = abs(target - start)
+    if delta == 8:
+        return True
 
-def bishop_move(start):
-    ...
+def bishop_move(start, target):
+    if target > 64 or target < 1:
+        return False
+    delta = abs(target - start)
+    if delta % 7 == 0 or delta % 9 == 0:
+        return True 
 
 def collision_detection():
     ...
