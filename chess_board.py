@@ -37,17 +37,17 @@ def convert_coordinate_index(let, num):
     if let.upper() == "B":
         num += 7
     if let.upper() == "C":
-        num += 14
+        num += 15
     if let.upper() == "D":
-        num += 21
+        num += 23
     if let.upper() == "E":
-        num += 28
+        num += 31
     if let.upper() == "F":
-        num += 35
+        num += 39
     if let.upper() == "G":
-        num += 42
+        num += 47
     if let.upper() == "H":
-        num += 49
+        num += 55
     return num
 
 def display():
