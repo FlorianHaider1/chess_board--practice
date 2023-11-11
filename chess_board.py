@@ -97,12 +97,11 @@ def move_legality(piece, start, target):
 
 def rook_move(start, target):
     delta = abs(target - start)
-    delta_relativ = (target - start) % 8
     if target > 64 or target < 1:
         return False
     elif delta %8 == 0:
         return True
-    elif delta_relativ >= 1 - delta_relativ and delta_relativ <= 8 - delta_relativ:
+    elif delta >= 1 - ((start//8)+1) and delta <= 8 - ((start//8)+1):
         return True 
 
 def knight_move(start, target):
@@ -124,6 +123,8 @@ def queen_move(start, target):
         return False
     if delta %8 == 0:
         return True
+    elif delta >= 1 - ((start//8)+1) and delta <= 8 - ((start//8)+1):
+        return True 
 
 def pawn_move(start, target):
     if target > 64 or target < 1:
