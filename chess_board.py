@@ -76,7 +76,7 @@ def move():
     target = turn()
     piece_target = chessboard_actual[target]
     if move_legality(piece_start, start, target):
-        if piece_start is black and piece_target is black or piece_start is white and piece_target is white:
+        if (piece_start in black and piece_target in black) or (piece_start in white and piece_target in white):
             print("Move not valid. Please try again.")
         else:
             # collision_detection(piece, start, target)
@@ -130,7 +130,7 @@ def pawn_move(start, target):
     delta = abs(target - start)
     if delta == 8:
         return True
-    elif delta in (7,9) and (start in white and target in black or start in black and target in white):
+    elif delta in (7,9) and (start in white and target in black) or (start in black and target in white):
         return True
 
 def bishop_move(start, target):
