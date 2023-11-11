@@ -76,7 +76,36 @@ def move():
     chessboard_actual[target] = chessboard_actual[start]
     display()
 
-def move_legality():
+def move_legality(piece):
+    if piece == "\u2656" or if piece == "\u265C":
+        rook_move()
+    if piece == "\u2658" or if piece == "\u265E":
+        knight_move()
+    if piece == "\u2657" or if piece == "\u265D":
+        bishop_move()
+    if piece == "\u2655" or if piece == "\u265B":
+        queen_move()
+    if piece == "\u2654" or if piece == "\u265A":
+        king_move()
+    if piece == "\u2659" or if piece == "\u265F":
+        pawn_move()
+
+def knight_move():
+    ...
+
+def king_move():
+    ...
+
+def queen_move():
+    ...
+
+def pawn_move():
+    ...
+
+def rook_move():
+    ...
+
+def bishop_move():
     ...
 
 def collision_detection():
