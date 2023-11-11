@@ -72,22 +72,23 @@ def move():
     print("\nYou selected\t",chessboard_actual[start])
     print("\nSelect target field\n")
     target = turn()
+    move_legality(chessboard_actual[start])
     print("You moved ", chessboard_actual[start])
     chessboard_actual[target] = chessboard_actual[start]
     display()
 
 def move_legality(piece):
-    if piece == "\u2656" or if piece == "\u265C":
+    if piece == "\u2656" or piece == "\u265C":
         rook_move()
-    if piece == "\u2658" or if piece == "\u265E":
+    if piece == "\u2658" or piece == "\u265E":
         knight_move()
-    if piece == "\u2657" or if piece == "\u265D":
+    if piece == "\u2657" or piece == "\u265D":
         bishop_move()
-    if piece == "\u2655" or if piece == "\u265B":
+    if piece == "\u2655" or piece == "\u265B":
         queen_move()
-    if piece == "\u2654" or if piece == "\u265A":
+    if piece == "\u2654" or piece == "\u265A":
         king_move()
-    if piece == "\u2659" or if piece == "\u265F":
+    if piece == "\u2659" or piece == "\u265F":
         pawn_move()
 
 def knight_move():
