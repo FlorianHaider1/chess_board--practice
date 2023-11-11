@@ -31,42 +31,52 @@ chessboard_start = ["\u2656","\u2658","\u2657","\u2655","\u2654","\u2657","\u265
 
 chessboard_actual = chessboard_start.copy()
 
-letter = "B"
-number = 1
-
 def convert_coordinate_index(let, num):
-    if let == "A":
+    if let.upper() == "A":
         num -= 1
-    if let == "B":
+    if let.upper() == "B":
         num += 7
-    if let == "C":
+    if let.upper() == "C":
         num += 14
-    if let == "D":
+    if let.upper() == "D":
         num += 21
-    if let == "E":
+    if let.upper() == "E":
         num += 28
-    if let == "F":
+    if let.upper() == "F":
         num += 35
-    if let == "G":
+    if let.upper() == "G":
         num += 42
-    if let == "H":
+    if let.upper() == "H":
         num += 49
     return num
 
-
-
-
 def display():
     board = PrettyTable()
-    board.field_names = ["","A","B","C","D","E","F","G","H"]
-    board.add_row(["1"] + chessboard_actual[0:8:])
-    board.add_row(["2"] + chessboard_actual[8:16:])
-    board.add_row(["3"] + chessboard_actual[16:24:])
-    board.add_row(["4"] + chessboard_actual[24:32:])
-    board.add_row(["5"] + chessboard_actual[32:40:])
-    board.add_row(["6"] + chessboard_actual[40:48:])
-    board.add_row(["7"] + chessboard_actual[48:56:])
-    board.add_row(["8"] + chessboard_actual[56:65:])
+    board.field_names = ["","1","2","3","4","5","6","7","8"]
+    board.add_row(["A"] + chessboard_actual[0:8:])
+    board.add_row(["B"] + chessboard_actual[8:16:])
+    board.add_row(["C"] + chessboard_actual[16:24:])
+    board.add_row(["D"] + chessboard_actual[24:32:])
+    board.add_row(["E"] + chessboard_actual[32:40:])
+    board.add_row(["F"] + chessboard_actual[40:48:])
+    board.add_row(["G"] + chessboard_actual[48:56:])
+    board.add_row(["G"] + chessboard_actual[56:65:])
     print(board)
 
-display()
+def turn():
+    letter = str(input("Insert letter:\t"))
+    number = int(input("Insert number:\t"))
+    return convert_coordinate_index(letter, number)
+
+def move():
+    print("\nSelect figure field\n")
+    start = turn()
+    print("\nYou selected\t",chessboard_actual[start])
+    print("\nSelect target field\n")
+    target = turn()
+    print("You moved ", chessboard_actual[start])
+    chessboard_actual[target] = chessboard_actual[start]
+    display()
+
+
+move()
