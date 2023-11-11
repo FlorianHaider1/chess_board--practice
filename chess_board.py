@@ -22,15 +22,21 @@ from prettytable import PrettyTable
 chessboard_reference = []
 chessboard_actual = ["\u2656","\u2658","\u2657","\u2655","\u2654","\u2657","\u2658","\u2656",
                      "\u2659","\u2659","\u2659","\u2659","\u2659","\u2659","\u2659","\u2659",
-                     ".",".",".",".",".",".",".",".",
-                     ".",".",".",".",".",".",".",".",
-                     ".",".",".",".",".",".",".",".",
-                     ".",".",".",".",".",".",".",".",
+                     "","","","","","","","",
+                     "","","","","","","","",
+                     "","","","","","","","",
+                     "","","","","","","","",
                      "\u265F","\u265F","\u265F","\u265F","\u265F","\u265F","\u265F","\u265F",
                      "\u265C","\u265E","\u265D","\u265B","\u265A","\u265D","\u265E","\u265C"]
-print(chessboard_actual)
 
 board = PrettyTable()
-board.field_names = ["A","B","C","D","E","F","G","H","I"]
-board.add_column("",[1,2,3,4,5,6,7,8])
+board.field_names = ["","A","B","C","D","E","F","G","H"]
+board.add_row(["1"] + chessboard_actual[0:8:])
+board.add_row(["2"] + chessboard_actual[8:16:])
+board.add_row(["3"] + chessboard_actual[16:24:])
+board.add_row(["4"] + chessboard_actual[24:32:])
+board.add_row(["5"] + chessboard_actual[32:40:])
+board.add_row(["6"] + chessboard_actual[40:48:])
+board.add_row(["7"] + chessboard_actual[48:56:])
+board.add_row(["8"] + chessboard_actual[56:65:])
 print(board)
