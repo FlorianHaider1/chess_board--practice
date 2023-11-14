@@ -3,6 +3,7 @@
 # II) Possibility to use two list as rows and colums.
 #
 # to add:
+# use of my own modules: 1) Board (could be reused for other games) 2) Pieces (moves, detection, etc.) 
 # Turn counter. 
 # First pawn move 2 fields is possible
 # collision detection pt.II: detect if there are collisions with pieces on the way, not just the endpoint
